@@ -22,7 +22,8 @@ CORS(app)
 # ROUTES
 '''
 @TODO implement endpoint
-    GET /drinks
+    GET /
+
         it should be a public endpoint
         it should contain only the drink.short() data representation
     returns status code 200 and json {"success": True, "drinks": drinks} where drinks is the list of drinks
