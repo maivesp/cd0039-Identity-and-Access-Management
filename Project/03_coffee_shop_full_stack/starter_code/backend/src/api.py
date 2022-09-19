@@ -4,8 +4,8 @@ from sqlalchemy import exc
 import json
 from flask_cors import CORS
 
-from .database.models import db_drop_and_create_all, setup_db, Drink
-from .auth.auth import AuthError, requires_auth
+from database.models import db_drop_and_create_all, setup_db, Drink
+from auth.auth import AuthError, requires_auth
 
 app = Flask(__name__)
 setup_db(app)
@@ -30,6 +30,7 @@ CORS(app)
         or appropriate status code indicating reason for failure
 '''
 @app.route('/drinks',methods=['GET'])
+
 def get_drinks():
     try:
         drinks = Drink.query.all()
@@ -53,6 +54,8 @@ def get_drinks():
         or appropriate status code indicating reason for failure
 '''
 @app.route('/drinks-detail',methods=['GET'])
+@requires_auth(permission='get:drink details')
+
 def get_drinks_detail():
     try:
         drinks=Drink.query.all()
@@ -77,15 +80,15 @@ def get_drinks_detail():
 '''
 
 @app.route('/drinks',methods=['POST'])
+@requires_auth(permission='create:drink')
+
 def create_drink():
     body=request.get_json()
     
     new_title=body.get("title")
     new_recipe=body.get("recipe")
-    print(json.dumps(new_recipe))
     drink=Drink(title=new_title,recipe=json.dumps(new_recipe))
-    print(new_title)
-    print(new_recipe)
+
 
     try:
         drink.insert()
@@ -110,6 +113,8 @@ def create_drink():
 '''
 
 @app.route('/drinks/<int:id>',methods=['PATCH'])
+@requires_auth(permission='update:drink')
+
 def update_drinks(id):
 
     try:
@@ -149,7 +154,10 @@ def update_drinks(id):
     returns status code 200 and json {"success": True, "delete": id} where id is the id of the deleted record
         or appropriate status code indicating reason for failure
 '''
+
 @app.route('/drinks/<int:id>',methods=['DELETE'])
+@requires_auth(permission='delete:drinks')
+
 def delete_drink(id):
     try:
         drink=Drink.query.filter(Drink.id==id).one_or_none()
@@ -192,6 +200,14 @@ def unprocessable(error):
         "error": 404,
         "message": "resource not found"
     }), 422
+
+@app.errorhandler(401)
+def unprocessable(error):
+    return jsonify({
+        "success": False,
+        "error": 401,
+        "message": "Not Authorized"
+    }), 401
 
 '''
 @TODO implement error handlers using the @app.errorhandler(error) decorator

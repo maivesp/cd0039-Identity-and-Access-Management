@@ -7,9 +7,9 @@ from jose import jwt
 from urllib.request import urlopen
 
 
-AUTH0_DOMAIN = 'udacity-fsnd.auth0.com'
+AUTH0_DOMAIN = 'dev-qiwwdzlk.us.auth0.com'
 ALGORITHMS = ['RS256']
-API_AUDIENCE = 'dev'
+API_AUDIENCE = 'CoffeeApp'
 
 ## AuthError Exception
 '''
@@ -43,7 +43,9 @@ def get_token_auth_header():
     auth_header = request.headers['Authorization']
     header_parts = auth_header.split(' ')
 
-    if len(header_parts) == 2:
+    print(len(header_parts))
+
+    if len(header_parts) != 2:
         raise AuthError({
             'code': 'invalid_header',
             'description': 'Token not found.'
@@ -74,6 +76,7 @@ def get_token_auth_header():
     return true otherwise
 '''
 def check_permissions(permission, payload):
+    print(payload)
     if 'permissions' not in payload:
         raise AuthError({
             'code': 'invalid_claims',
