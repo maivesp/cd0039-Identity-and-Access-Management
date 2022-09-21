@@ -4,8 +4,8 @@ from sqlalchemy import exc
 import json
 from flask_cors import CORS
 
-from database.models import db_drop_and_create_all, setup_db, Drink
-from auth.auth import AuthError, requires_auth
+from .database.models import db_drop_and_create_all, setup_db, Drink
+from .auth.auth import AuthError, requires_auth
 
 app = Flask(__name__)
 setup_db(app)
@@ -160,11 +160,5 @@ def unprocessable(error):
         "message": "Not Authorized"
     }), 401
 
-@app.errorhandler(403)
-def unprocessable(error):
-    return jsonify({
-        "success": False,
-        "error": 403,
-        "message": "Forbidden resource"
-    }), 403
+
 
