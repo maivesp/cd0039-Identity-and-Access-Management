@@ -6,11 +6,11 @@
     "\\Project\\03_coffee_shop_full_stack\\starter_code",
     "\\Project\\03_coffee_shop_full_stack\\starter_code\\backend",
     "\\Project\\03_coffee_shop_full_stack\\starter_code\\backend\\src",
-    "\\Project\\03_coffee_shop_full_stack\\starter_code\\backend\\src\\database",
+    "\\Project\\03_coffee_shop_full_stack\\starter_code\\backend\\src\\auth",
     "\\Project\\03_coffee_shop_full_stack\\starter_code\\frontend",
     "\\Project\\03_coffee_shop_full_stack\\starter_code\\frontend\\src",
     "\\Project\\03_coffee_shop_full_stack\\starter_code\\frontend\\src\\environments"
   ],
-  "SelectedNode": "\\Project\\03_coffee_shop_full_stack\\starter_code\\backend\\src\\database\\models.py",
+  "SelectedNode": "\\Project\\03_coffee_shop_full_stack",
   "PreviewInSolutionExplorer": false
 }

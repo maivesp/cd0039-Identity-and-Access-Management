@@ -20,6 +20,11 @@ Once you have your virtual environment setup and running, install dependencies b
 pip install -r requirements.txt
 ```
 
+#### PIP nodes-sass
+npm unistall node-sass
+npm i -D sass
+
+
 This will install all of the required packages we selected within the `requirements.txt` file.
 
 ##### Key Dependencies
