@@ -19,3 +19,13 @@ pip install --upgrade MarkupSafe
 
 
 npm run ng serve
+
+Accidentally seemed to have deleted the period at the start from the below import statements.  
+
+from .database.models import db_drop_and_create_all, setup_db, Drink
+from .auth.auth import AuthError, requires_auth
+
+Corrected now and reran the postman collections. 13 test results passed.
+
+7 failed because though auth.py raises Autherror for DELTE/PATCH/POST requests for users, Public and BArista, 500 internal error is returned to front end. Couldn't figure out why.
+src.auth.auth.AuthError: ({'code': 'unauthorized', 'description': 'Permission not found'}, 403)
