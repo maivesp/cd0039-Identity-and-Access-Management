@@ -68,7 +68,7 @@ def create_drink(payload):
     
     return jsonify({
         "success": True,
-        "drinks": drink.short()})
+        "drinks": [drink.long()]})
 
 @app.route('/drinks/<int:id>',methods=['PATCH'])
 @requires_auth(permission='update:drink')
@@ -97,16 +97,16 @@ def update_drinks(payload,id):
             print(str(error.orig) + "for parameters" + str(error.params))
             abort(422)
 
-    try:
-        drinks=Drink.query.filter(Drink.id==id).all()
-    except:
-        abort(404)
+    #try:
+    #    drinks=Drink.query.filter(Drink.id==id).all()
+    #except:
+    #    abort(404)
 
-    formatted_drinks = [drink.long() for drink in drinks]
+    #formatted_drinks = [drink.long() for drink in drinks]
 
     return jsonify({
         "success" : True,
-        "drinks" : formatted_drinks
+        "drinks" : [drink.long()]
         })
 
 
@@ -160,5 +160,13 @@ def unprocessable(error):
         "message": "Not Authorized"
     }), 401
 
+@app.errorhandler(AuthError)
+def handle_auth_error(ex):
+    """
+    Receive the raised authorization error and propagates it as response
+    """
+    response = jsonify(ex.error)
+    response.status_code = ex.status_code
+    return response
 
 

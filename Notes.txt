@@ -9,7 +9,9 @@ issue 'python -m flask run' command in the folder where API.py resides
 
 E:\Udacity\cd0039-Identity-and-Access-Management\env\Scripts\activate
 
+E:\Udacity\cd0039-Identity-and-Access-Management\Project\03_coffee_shop_full_stack\starter_code\backend\src
 
+E:\Udacity\cd0039-Identity-and-Access-Management\Project\03_coffee_shop_full_stack\starter_code\frontend
 npm install --global windows-build-tools  
 
 
